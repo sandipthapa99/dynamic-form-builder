@@ -1,4 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
+import AdminLayout from '@/layout/AdminLayout';
+import Landingpage from '@/pages/landing.page';
+import SignInPage from '@/pages/Signin.page';
+import PublicRoute from './PublicRoute';
 
 interface AppRoute {
   path: string;
@@ -7,16 +12,31 @@ interface AppRoute {
 }
 
 const NotFound = () => {
-  return <Navigate to='/home' />;
+  return <Navigate to='/dashboard' />;
 };
+
 const routes: AppRoute[] = [
+  { path: '/', element: <PublicRoute element={<Landingpage />} /> },
+  { path: '/sign-in', element: <PublicRoute element={<SignInPage />} /> },
   {
-    path: '/home',
-    element: <p>Home</p>,
-  },
-  {
-    path: '/builder',
-    element: <p>Builder</p>,
+    path: '/dashboard',
+    element: <PrivateRoute element={<AdminLayout />} />,
+
+    children: [
+      {
+        path: '',
+        element: <p>Home</p>,
+      },
+      { path: 'builder', element: <p>Builder</p> },
+      // {
+      //   path: 'builder/:id',
+      //   element: <Builder />,
+      // },
+      {
+        path: 'forms/:id',
+        element: <p>FOrms page</p>,
+      },
+    ],
   },
 
   {
@@ -29,11 +49,15 @@ const AppRoutes = () => {
   return (
     <Routes>
       {routes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          element={route.element}
-        ></Route>
+        <Route key={route.path} path={route.path} element={route.element}>
+          {route?.children?.map((childRoute) => (
+            <Route
+              key={childRoute.path}
+              path={childRoute.path}
+              element={childRoute.element}
+            />
+          ))}
+        </Route>
       ))}
     </Routes>
   );

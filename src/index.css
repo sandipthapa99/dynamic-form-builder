@@ -69,3 +69,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .px-common {
+    @apply px-4 md:px-9 xl:px-[80px];
+  }
+}

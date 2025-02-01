@@ -77,7 +77,7 @@ const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
               </Link>
             </Button>
             <Button asChild variant={'link'}>
-              <Link to={`/dashboard/${form.id}`}>
+              <Link to={`/dashboard/forms/${form.id}`}>
                 Form details
                 <BsArrowRight />
               </Link>

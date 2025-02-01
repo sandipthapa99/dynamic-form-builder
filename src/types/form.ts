@@ -7,6 +7,8 @@ export type FormResponseType = {
   published: boolean;
   content: FormElementInstance[];
   shareURL: string;
+  visits: number;
+  submissions: number;
 };
 
 export type FormElement = {

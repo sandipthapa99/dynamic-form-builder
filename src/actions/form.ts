@@ -50,6 +50,8 @@ export async function CreateForm(
         name,
         description,
         content: [],
+        visits: 0,
+        submissions: 0,
       }),
     });
 
@@ -140,5 +142,46 @@ export const PublishForm = async (id: number) => {
   } catch (error) {
     console.error('Error publishing form:', error);
     return undefined;
+  }
+};
+
+export const GetFormStats = async (userId: string | undefined) => {
+  try {
+    // Fetch all forms for the given userId from JSON Server
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms?userId=${userId}`
+    );
+    const forms = await response.json();
+
+    // Sum up the visits and submissions for all the forms
+    let visits = 0;
+    let submissions = 0;
+
+    forms.forEach((form: FormResponseType) => {
+      visits += form.visits || 0;
+      submissions += form.submissions || 0;
+    });
+
+    let submissionRate = 0;
+    if (visits > 0) {
+      submissionRate = (submissions / visits) * 100;
+    }
+
+    const bounceRate = 100 - submissionRate;
+
+    return {
+      visits,
+      submissions,
+      submissionRate,
+      bounceRate,
+    };
+  } catch (error) {
+    console.error('Error fetching form stats:', error);
+    return {
+      visits: 0,
+      submissions: 0,
+      submissionRate: 0,
+      bounceRate: 0,
+    };
   }
 };

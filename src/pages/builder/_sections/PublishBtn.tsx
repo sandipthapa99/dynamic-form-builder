@@ -17,7 +17,7 @@ import { toast } from '@/hooks/use-toast';
 import { PublishForm } from '@/actions/form';
 import { useNavigate } from 'react-router-dom';
 
-const PublishBtn = ({ id }: { id: number | undefined }) => {
+const PublishBtn = ({ id }: { id: string | undefined }) => {
   const [loading, startTransition] = useTransition();
   const navigate = useNavigate();
 

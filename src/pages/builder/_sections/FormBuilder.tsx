@@ -40,7 +40,7 @@ const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
     setElements(elements || []);
   }, [form, setElements]);
 
-  const shareUrl = `${window.location.origin}/submit/${form?.id}`;
+  const shareUrl = `${window.location.origin}/dashboard/submit/${form?.id}`;
 
   if (form?.published) {
     return (

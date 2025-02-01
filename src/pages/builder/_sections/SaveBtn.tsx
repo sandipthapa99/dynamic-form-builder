@@ -6,7 +6,7 @@ import { UpdateFormContent } from '@/actions/form';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 
-const SaveBtn = ({ id }: { id: number | undefined }) => {
+const SaveBtn = ({ id }: { id: string | undefined }) => {
   const [loading, startTransition] = useTransition();
 
   const { elements } = useDesigner();

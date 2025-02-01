@@ -4,7 +4,7 @@ import { Input } from '../ui/input';
 import { toast } from '@/hooks/use-toast';
 
 const FormLinkShare = ({ shareUrl }: { shareUrl: string }) => {
-  const shareLink = `${window.location.origin}/submit/${shareUrl}`;
+  const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
   return (
     <div className='flex flex-grow gap-4 items-center'>
       <Input value={shareLink} readOnly />

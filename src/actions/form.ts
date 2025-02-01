@@ -95,7 +95,7 @@ export const GetFormById = async (
   }
 };
 
-export const UpdateFormContent = async (id: number, jsonContent: string) => {
+export const UpdateFormContent = async (id: string, jsonContent: string) => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_API_KEY}/forms/${id}`,
@@ -120,7 +120,7 @@ export const UpdateFormContent = async (id: number, jsonContent: string) => {
   }
 };
 
-export const PublishForm = async (id: number) => {
+export const PublishForm = async (id: string) => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_API_KEY}/forms/${id}`,
@@ -183,5 +183,37 @@ export const GetFormStats = async (userId: string | undefined) => {
       submissionRate: 0,
       bounceRate: 0,
     };
+  }
+};
+
+export const SubmitForm = async (
+  formId: string | undefined,
+  content: string
+) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/formSubmissions`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: Date.now().toString(),
+          createdAt: new Date().toISOString(),
+          formId,
+          content,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to submit form');
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    throw error;
   }
 };

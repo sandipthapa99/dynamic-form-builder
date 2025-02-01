@@ -7,6 +7,7 @@ import PublicRoute from './PublicRoute';
 import Homepage from '@/pages/homepage';
 import Builder from '@/pages/builder';
 import FormDetailPage from '@/pages/forms';
+import SubmitPage from '@/pages/submit';
 
 interface AppRoute {
   path: string;
@@ -42,6 +43,10 @@ const routes: AppRoute[] = [
       {
         path: 'forms/:id',
         element: <p>Forms page</p>,
+      },
+      {
+        path: 'submit/:id',
+        element: <SubmitPage />,
       },
     ],
   },

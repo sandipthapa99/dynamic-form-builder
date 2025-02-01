@@ -1,7 +1,7 @@
 import { Button } from '../ui/button';
 
 const VisitBtn = ({ shareUrl }: { shareUrl: string }) => {
-  const shareLink = `${window.location.origin}/submit/${shareUrl}`;
+  const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
   return (
     <Button
       className='w-[200px]'

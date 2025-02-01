@@ -1,5 +1,5 @@
 export type FormResponseType = {
-  id: number;
+  id: string;
   userId: string;
   name: string;
   description: string;
@@ -10,6 +10,7 @@ export type FormResponseType = {
   visits: number;
   submissions: number;
 };
+export type SubmitFunction = (key: string, value: string) => void;
 
 export type FormElement = {
   type: ElementsType;
@@ -23,10 +24,14 @@ export type FormElement = {
   }>;
   formComponent: React.FC<{
     elementInstance: FormElementInstance;
+    submitValue?: (key: string, value: string) => void;
+    isInvalid?: boolean;
+    defaultValue?: string;
   }>;
   propertiesComponent: React.FC<{
     elementInstance: FormElementInstance;
   }>;
+  validate: (FormElement: FormElementInstance, currentValue: string) => boolean;
 };
 export type FormElementInstance = {
   id: string;

@@ -1,0 +1,47 @@
+{
+  "forms": [
+    {
+      "id": "a1f8",
+      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
+      "createdAt": "2025-02-01T10:45:55.204Z",
+      "published": false,
+      "name": "Test",
+      "description": "Description",
+      "content": []
+    }
+  ],
+  "FormSubmissions": [
+    {
+      "id": "1",
+      "createdAt": "2025-01-30T08:42:30.963Z",
+      "formId": "e943",
+      "content": []
+    }
+  ],
+  "stats": [
+    {
+      "id": "1",
+      "title": "Total visits",
+      "desc": "This is description",
+      "value": 100
+    },
+    {
+      "id": "2",
+      "title": "Total Submissions",
+      "desc": "All time form Submission",
+      "value": 123
+    },
+    {
+      "id": "3",
+      "title": "Submission Rate",
+      "desc": "Visits that result in form submission",
+      "value": 97
+    },
+    {
+      "id": "4",
+      "title": "Bounce Rate",
+      "desc": "Visits that leave without interacting",
+      "value": 35
+    }
+  ]
+}

@@ -2,8 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import AdminLayout from '@/layout/AdminLayout';
 import Landingpage from '@/pages/landing.page';
-import SignInPage from '@/pages/Signin.page';
+import SignInPage from '@/pages/signin.page';
 import PublicRoute from './PublicRoute';
+import Homepage from '@/pages/home.page';
 
 interface AppRoute {
   path: string;
@@ -25,7 +26,7 @@ const routes: AppRoute[] = [
     children: [
       {
         path: '',
-        element: <p>Home</p>,
+        element: <Homepage />,
       },
       { path: 'builder', element: <p>Builder</p> },
       // {
@@ -34,7 +35,7 @@ const routes: AppRoute[] = [
       // },
       {
         path: 'forms/:id',
-        element: <p>FOrms page</p>,
+        element: <p>Forms page</p>,
       },
     ],
   },

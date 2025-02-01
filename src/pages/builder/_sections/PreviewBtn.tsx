@@ -1,6 +1,11 @@
 import { FormElements } from '@/components/common/FormElements';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import useDesigner from '@/hooks/useDesigner';
 import { MdPreview } from 'react-icons/md';
 
@@ -15,6 +20,7 @@ const PreviewBtn = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className='w-screen h-screen max-h-screen max-w-full flex flex-col flex-grow p-0 gap-0'>
+        <DialogTitle></DialogTitle>
         <div className='px-4 py-2 border-b'>
           <p className='text-lg font-semibold text-accent-foreground'>
             Form Preview

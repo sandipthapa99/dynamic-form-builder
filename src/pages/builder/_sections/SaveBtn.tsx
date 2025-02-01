@@ -1,10 +1,10 @@
 import useDesigner from '@/hooks/useDesigner';
 import { HiSaveAs } from 'react-icons/hi';
-import { toast } from '@/hooks/use-toast';
 import { useTransition } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { UpdateFormContent } from '@/actions/form';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/hooks/use-toast';
 
 const SaveBtn = ({ id }: { id: number | undefined }) => {
   const [loading, startTransition] = useTransition();
@@ -18,6 +18,7 @@ const SaveBtn = ({ id }: { id: number | undefined }) => {
       toast({
         title: 'Success',
         description: 'Your form has been saved',
+        variant: 'success',
       });
     } catch (error) {
       toast({

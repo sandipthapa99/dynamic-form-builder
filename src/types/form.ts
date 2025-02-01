@@ -6,6 +6,7 @@ export type FormResponseType = {
   createdAt: string; // ISO date string
   published: boolean;
   content: FormElementInstance[];
+  shareURL: string;
 };
 
 export type FormElement = {

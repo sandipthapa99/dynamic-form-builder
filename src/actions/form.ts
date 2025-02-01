@@ -93,7 +93,7 @@ export const GetFormById = async (
   }
 };
 
-export async function UpdateFormContent(id: number, jsonContent: string) {
+export const UpdateFormContent = async (id: number, jsonContent: string) => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_API_KEY}/forms/${id}`,
@@ -116,4 +116,29 @@ export async function UpdateFormContent(id: number, jsonContent: string) {
     console.error('Error updating form:', error);
     return undefined;
   }
-}
+};
+
+export const PublishForm = async (id: number) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ published: true }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to publish form');
+    }
+
+    const updatedForm = await response.json();
+    return updatedForm;
+  } catch (error) {
+    console.error('Error publishing form:', error);
+    return undefined;
+  }
+};

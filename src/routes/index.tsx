@@ -4,7 +4,8 @@ import AdminLayout from '@/layout/AdminLayout';
 import Landingpage from '@/pages/landing.page';
 import SignInPage from '@/pages/signin.page';
 import PublicRoute from './PublicRoute';
-import Homepage from '@/pages/home.page';
+import Homepage from '@/pages/homepage';
+import Builder from '@/pages/builder';
 
 interface AppRoute {
   path: string;
@@ -28,11 +29,11 @@ const routes: AppRoute[] = [
         path: '',
         element: <Homepage />,
       },
-      { path: 'builder', element: <p>Builder</p> },
-      // {
-      //   path: 'builder/:id',
-      //   element: <Builder />,
-      // },
+      { path: 'builder', element: <Builder /> },
+      {
+        path: 'builder/:id',
+        element: <Builder />,
+      },
       {
         path: 'forms/:id',
         element: <p>Forms page</p>,

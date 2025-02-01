@@ -63,3 +63,57 @@ export async function CreateForm(
     console.error('Error creating form:', error);
   }
 }
+
+export const GetFormById = async (
+  userId: string | undefined,
+  formId: string | undefined
+): Promise<FormResponseType | undefined> => {
+  if (!userId) {
+    throw new Error('User ID is required');
+  }
+
+  if (!formId) {
+    throw new Error('Form ID is required');
+  }
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${formId}`
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch form');
+    }
+
+    const form: FormResponseType = await response.json();
+    return form;
+  } catch (error) {
+    console.error('Error fetching form:', error);
+    return undefined;
+  }
+};
+
+export async function UpdateFormContent(id: number, jsonContent: string) {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonContent,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to update form content');
+    }
+
+    const updatedForm = await response.json();
+    return updatedForm;
+  } catch (error) {
+    console.error('Error updating form:', error);
+    return undefined;
+  }
+}

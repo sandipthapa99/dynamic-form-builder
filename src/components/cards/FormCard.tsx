@@ -21,8 +21,11 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
       <CardHeader>
         <CardTitle className='flex items-center gap-2 justify-between'>
           <span className='truncate font-bold'>{form.name}</span>
-          {form.published && <Badge>Published</Badge>}
-          {!form.published && <Badge variant={'destructive'}>Draft</Badge>}
+          {form.published ? (
+            <Badge>Published</Badge>
+          ) : (
+            <Badge variant={'destructive'}>Draft</Badge>
+          )}
         </CardTitle>
         <CardDescription className='flex items-center justify-between text-muted-foreground text-sm'>
           {formatDistance(form.createdAt, new Date(), {

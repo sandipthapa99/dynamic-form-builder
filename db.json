@@ -7,6 +7,45 @@
       "published": false,
       "name": "Test",
       "description": "Description",
+      "content": [
+        {
+          "id": "188",
+          "type": "TextField",
+          "extraAttributes": {
+            "label": "Text field 2",
+            "helperText": "",
+            "placeholder": "Placeholder value",
+            "required": false
+          }
+        },
+        {
+          "id": "7986",
+          "type": "TextField",
+          "extraAttributes": {
+            "label": "Text field",
+            "helperText": "",
+            "required": false,
+            "placeholder": "Placeholder value"
+          }
+        }
+      ]
+    },
+    {
+      "id": "51b9",
+      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
+      "createdAt": "2025-02-01T11:15:58.087Z",
+      "published": false,
+      "name": "My Form",
+      "description": "",
+      "content": []
+    },
+    {
+      "id": "3dfc",
+      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
+      "createdAt": "2025-02-01T11:45:46.134Z",
+      "published": false,
+      "name": "Test",
+      "description": "",
       "content": []
     }
   ],

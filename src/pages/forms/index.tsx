@@ -85,7 +85,7 @@ const FormDetailPage = () => {
       </div>
 
       <div className='container pt-10'>
-        <SubmissionTable id={formData?.id} />
+        <SubmissionTable id={id} />
       </div>
     </>
   );

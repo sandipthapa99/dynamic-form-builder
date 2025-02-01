@@ -217,3 +217,45 @@ export const SubmitForm = async (
     throw error;
   }
 };
+
+export const GetFormWithSubmissions = async (
+  formId: string | undefined
+): Promise<
+  {
+    FormSubmissions: {
+      id: string;
+      createdAt: string;
+      formId: number;
+      content: string;
+    }[];
+  } & FormResponseType
+> => {
+  if (!formId) {
+    throw new Error('Form ID is required');
+  }
+
+  try {
+    // Fetch form details
+    const formResponse = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${formId}`
+    );
+    if (!formResponse.ok) {
+      throw new Error('Failed to fetch form details');
+    }
+    const form = await formResponse.json();
+
+    // Fetch form submissions for the given formId
+    const submissionsResponse = await fetch(
+      `${import.meta.env.VITE_API_KEY}/formSubmissions?form=${formId}`
+    );
+    if (!submissionsResponse.ok) {
+      throw new Error('Failed to fetch form submissions');
+    }
+    const FormSubmissions = await submissionsResponse.json();
+
+    return { ...form, FormSubmissions };
+  } catch (error) {
+    console.error('Error fetching form with submissions:', error);
+    throw error;
+  }
+};

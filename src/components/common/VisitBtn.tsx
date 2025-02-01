@@ -1,6 +1,6 @@
 import { Button } from '../ui/button';
 
-const VisitBtn = ({ shareUrl }: { shareUrl: string }) => {
+const VisitBtn = ({ shareUrl }: { shareUrl: string | undefined }) => {
   const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
   return (
     <Button

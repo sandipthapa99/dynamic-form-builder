@@ -14,7 +14,7 @@ const Builder = () => {
   useEffect(() => {
     const getSingleForm = async () => {
       if (!user?.id) return;
-      const form = await GetFormById(user?.id, id);
+      const form = await GetFormById(id);
       if (!form) throw new Error('Form not found');
       setFormData(form);
     };

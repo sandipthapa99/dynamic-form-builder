@@ -67,13 +67,8 @@ export async function CreateForm(
 }
 
 export const GetFormById = async (
-  userId: string | undefined,
   formId: string | undefined
 ): Promise<FormResponseType | undefined> => {
-  if (!userId) {
-    throw new Error('User ID is required');
-  }
-
   if (!formId) {
     throw new Error('Form ID is required');
   }

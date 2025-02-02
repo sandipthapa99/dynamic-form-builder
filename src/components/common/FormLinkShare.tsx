@@ -3,7 +3,7 @@ import { toast } from '@/hooks/use-toast';
 import { Copy } from 'lucide-react';
 
 const FormLinkShare = ({ shareUrl }: { shareUrl: string | undefined }) => {
-  const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
+  const shareLink = `${window.location.origin}/submit/${shareUrl}`;
   return (
     <div className='flex flex-grow gap-4 items-center'>
       <Button

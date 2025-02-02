@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const VisitBtn = ({ shareUrl }: { shareUrl: string | undefined }) => {
-  const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
+  const shareLink = `${window.location.origin}/submit/${shareUrl}`;
   return (
     <Button
       className='w-[120px]'

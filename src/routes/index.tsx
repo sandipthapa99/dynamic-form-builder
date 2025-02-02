@@ -23,6 +23,11 @@ const routes: AppRoute[] = [
   { path: '/', element: <PublicRoute element={<Landingpage />} /> },
   { path: '/sign-in', element: <PublicRoute element={<SignInPage />} /> },
   {
+    path: 'submit/:id',
+    element: <PublicRoute element={<SubmitPage />} />,
+  },
+
+  {
     path: '/dashboard',
     element: <PrivateRoute element={<AdminLayout />} />,
 
@@ -43,10 +48,6 @@ const routes: AppRoute[] = [
       {
         path: 'forms/:id',
         element: <p>Forms page</p>,
-      },
-      {
-        path: 'submit/:id',
-        element: <SubmitPage />,
       },
     ],
   },

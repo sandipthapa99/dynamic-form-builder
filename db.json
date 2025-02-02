@@ -54,8 +54,8 @@
           }
         }
       ],
-      "visits": 44,
-      "submissions": 2
+      "visits": 60,
+      "submissions": 3
     },
     {
       "id": "46ee",
@@ -145,6 +145,12 @@
       "id": "1738497282859",
       "createdAt": "2025-02-02T11:54:42.859Z",
       "formId": "2ea4",
+      "content": "{}"
+    },
+    {
+      "id": "1738499485988",
+      "createdAt": "2025-02-02T12:31:25.988Z",
+      "formId": "8e86",
       "content": "{}"
     }
   ]

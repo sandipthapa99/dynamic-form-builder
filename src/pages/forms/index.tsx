@@ -1,4 +1,6 @@
 import { GetFormById } from '@/actions/form';
+import NotFound from '@/components/common/NotFound';
+import { toast } from '@/hooks/use-toast';
 import { FormResponseType } from '@/types/form';
 import { useUser } from '@clerk/clerk-react';
 import { MousePointerClick, ReceiptText, Undo2, View } from 'lucide-react';
@@ -17,6 +19,7 @@ const FormDetailPage = () => {
 
   const { user } = useUser();
   const [formData, setFormData] = useState<FormResponseType>();
+  const [isNotFound, setIsNotFound] = useState<boolean>(false);
   let submissionRate = 0;
   if (formData) {
     if (formData.visits > 0) {
@@ -29,13 +32,24 @@ const FormDetailPage = () => {
     const getSingleForm = async () => {
       if (!user?.id) return;
       const form = await GetFormById(id);
-      if (!form) throw new Error('Form not found');
+      if (!form) {
+        toast({
+          title: 'An error occured',
+          description: 'Form not found',
+          variant: 'destructive',
+        });
+        setIsNotFound(true);
+      }
       setFormData(form);
     };
     if (id) {
       getSingleForm();
     }
   }, [user?.id, id]);
+
+  if (isNotFound) {
+    return <NotFound />;
+  }
   return (
     <div className='container px-common'>
       <div className='py-4 sm:py-10 '>

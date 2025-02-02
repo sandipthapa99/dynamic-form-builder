@@ -139,7 +139,7 @@ const Designer = () => {
           )}
           <ScrollArea
             className={cn(
-              'max-w-[990px] flex items-center justify-center flex-1 overflow-y-auto  ',
+              'max-w-[990px] flex items-center justify-center flex-1 overflow-y-auto  scrollbar-none',
               droppable.isOver && 'ring-4 ring-inset ring-primary/20'
             )}
           >

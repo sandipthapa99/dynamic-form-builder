@@ -1,38 +1,4 @@
 {
-  "forms": [
-    {
-      "id": "ee86",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T11:46:22.681Z",
-      "published": true,
-      "name": "Publish without save",
-      "description": "",
-      "content": [],
-      "visits": 3,
-      "submissions": 0
-    },
-    {
-      "id": "f85e",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T11:48:27.128Z",
-      "published": false,
-      "name": "sdfgh",
-      "description": "",
-      "content": [],
-      "visits": 0,
-      "submissions": 0
-    },
-    {
-      "id": "7ee4",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T11:59:53.185Z",
-      "published": false,
-      "name": "User Details",
-      "description": "",
-      "content": [],
-      "visits": 0,
-      "submissions": 0
-    }
-  ],
+  "forms": [],
   "formSubmissions": []
 }

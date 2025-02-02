@@ -2,7 +2,7 @@ import { FormElementInstance } from '@/types/form';
 import { FormElements } from './FormElements';
 import { Button } from '../ui/button';
 import { HiCursorClick } from 'react-icons/hi';
-import { useCallback, useRef, useState, useTransition } from 'react';
+import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { toast } from '@/hooks/use-toast';
 import { ImSpinner2 } from 'react-icons/im';
 import { SubmitForm } from '@/actions/form';
@@ -19,6 +19,35 @@ const FormSubmitComponent = ({
   const [renderKey, setRenderKey] = useState(new Date().getTime());
   const [submitted, setSubmitted] = useState(false);
   const [pending, startTransition] = useTransition();
+
+  // Increment visits count on mount
+  useEffect(() => {
+    const updateVisits = async () => {
+      if (!formId) return;
+
+      try {
+        // Fetch current form data
+        const response = await fetch(
+          `${import.meta.env.VITE_API_KEY}/forms/${formId}`
+        );
+        if (!response.ok) throw new Error('Failed to fetch form data');
+
+        const formData = await response.json();
+        const updatedVisits = (formData.visits || 0) + 1;
+
+        // Update visits count
+        await fetch(`${import.meta.env.VITE_API_KEY}/forms/${formId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ visits: updatedVisits }),
+        });
+      } catch (error) {
+        console.error('Error updating visits count:', error);
+      }
+    };
+
+    updateVisits();
+  }, [formId]);
 
   const validateForm: () => boolean = useCallback(() => {
     for (const field of content) {

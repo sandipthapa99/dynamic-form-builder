@@ -210,8 +210,30 @@ export const SubmitForm = async (
     if (!response.ok) {
       throw new Error('Failed to submit form');
     }
+    const result = await response.json();
 
-    return await response.json();
+    // Fetch the form to get the current submission count
+    const formResponse = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${formId}`
+    );
+    if (!formResponse.ok) {
+      throw new Error('Failed to fetch form to update submissions count');
+    }
+
+    const form = await formResponse.json();
+
+    // Increment submissions count
+    await fetch(`${import.meta.env.VITE_API_KEY}/forms/${formId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        submissions: form.submissions + 1,
+      }),
+    });
+
+    return result;
   } catch (error) {
     console.error('Error submitting form:', error);
     throw error;
@@ -246,7 +268,7 @@ export const GetFormWithSubmissions = async (
 
     // Fetch form submissions for the given formId
     const submissionsResponse = await fetch(
-      `${import.meta.env.VITE_API_KEY}/formSubmissions?form=${formId}`
+      `${import.meta.env.VITE_API_KEY}/formSubmissions?formId=${formId}`
     );
     if (!submissionsResponse.ok) {
       throw new Error('Failed to fetch form submissions');

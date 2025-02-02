@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 10,
@@ -37,7 +37,8 @@ const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
   useEffect(() => {
     const elements = form?.content;
     setElements(elements || []);
-  }, [form, setElements]);
+    setSelectedElement(null);
+  }, [form, setElements, setSelectedElement]);
 
   const shareUrl = `${window.location.origin}/dashboard/submit/${form?.id}`;
 

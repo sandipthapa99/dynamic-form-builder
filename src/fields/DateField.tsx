@@ -22,7 +22,6 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
-import { BsCalendar4, BsFillCalendarDateFill } from 'react-icons/bs';
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -31,6 +30,7 @@ import {
 } from '@/components/ui/popover';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
+import { CalendarDays } from 'lucide-react';
 
 const type: ElementsType = 'DateField';
 
@@ -63,7 +63,7 @@ const DesignerComponent = ({
         variant={'outline'}
         className='w-full justify-start text-left font-normal '
       >
-        <BsCalendar4 className='mr-2 h-4 w-4' />
+        <CalendarDays className='mr-2 h-4 w-4' />
         <span>Pick a date</span>
       </Button>
       {helperText && (
@@ -229,7 +229,7 @@ const FormComponent = ({
               error && 'border-red-500'
             )}
           >
-            <BsCalendar4 className='mr-2 h-4 w-4' />
+            <CalendarDays className='mr-2 h-4 w-4' />
             {date ? format(date, 'PPP') : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>
@@ -272,7 +272,7 @@ export const DateFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: BsFillCalendarDateFill,
+    icon: CalendarDays,
     label: 'Date Field',
   },
   designerComponent: DesignerComponent,

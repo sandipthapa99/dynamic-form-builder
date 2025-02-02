@@ -13,8 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { LuSeparatorHorizontal } from 'react-icons/lu';
-import { LucideSeparatorHorizontal } from 'lucide-react';
+import { LucideSeparatorHorizontal, SeparatorHorizontal } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 
 const type: ElementsType = 'SpacerField';
@@ -125,7 +124,7 @@ export const SpacerFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: LuSeparatorHorizontal,
+    icon: SeparatorHorizontal,
     label: 'Spacer Field',
   },
   designerComponent: DesignerComponent,

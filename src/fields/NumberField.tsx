@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
-import { Bs123 } from 'react-icons/bs';
+import { Binary } from 'lucide-react';
 
 const type: ElementsType = 'NumberField';
 
@@ -267,7 +267,7 @@ export const NumberFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: Bs123,
+    icon: Binary,
     label: 'Number Field',
   },
   designerComponent: DesignerComponent,

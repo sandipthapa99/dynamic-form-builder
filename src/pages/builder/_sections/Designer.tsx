@@ -8,14 +8,13 @@ import {
 import useDesigner from '@/hooks/useDesigner';
 
 import { useState } from 'react';
-import { BiSolidTrash } from 'react-icons/bi';
 import { FormElements } from '@/components/common/FormElements';
 import { generateId } from '@/lib/generateId';
 import { ElementsType, FormElementInstance } from '@/types/form';
 import { Button } from '@/components/ui/button';
 import DesignerSidebar from './DesignerSidebar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Layers } from 'lucide-react';
+import { Layers, Trash } from 'lucide-react';
 
 const Designer = () => {
   const {
@@ -234,7 +233,7 @@ function DesignerElementWrapper({
                 removeElement(element.id);
               }}
             >
-              <BiSolidTrash className='h-6 w-6 text-white' />
+              <Trash className='h-6 w-6 text-white' />
             </Button>
           </div>
           <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>

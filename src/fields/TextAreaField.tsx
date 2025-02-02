@@ -22,9 +22,9 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
-import { BsTextareaResize } from 'react-icons/bs';
 import { Textarea } from '@/components/ui/textarea';
 import { Slider } from '@/components/ui/slider';
+import { TextSelect } from 'lucide-react';
 
 const type: ElementsType = 'TextAreaField';
 
@@ -295,7 +295,7 @@ export const TextAreaFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: BsTextareaResize,
+    icon: TextSelect,
     label: 'Text area Field',
   },
   designerComponent: DesignerComponent,

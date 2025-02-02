@@ -1,8 +1,8 @@
 import useDesigner from '@/hooks/useDesigner';
 import { FormElements } from './FormElements';
 import { Button } from '../ui/button';
-import { AiOutlineClose } from 'react-icons/ai';
 import { Separator } from '../ui/separator';
+import { X } from 'lucide-react';
 
 const PropertiesFormSidebar = () => {
   const { selectedElement, setSelectedElement } = useDesigner();
@@ -12,7 +12,9 @@ const PropertiesFormSidebar = () => {
   return (
     <div className='flex flex-col p-2'>
       <div className='flex justify-between items-center'>
-        <p className='text-sm text-foreground/70'>Element Properties</p>
+        <p className='text-sm text-foreground font-medium'>
+          Element Properties
+        </p>
         <Button
           size={'icon'}
           variant={'ghost'}
@@ -20,7 +22,7 @@ const PropertiesFormSidebar = () => {
             setSelectedElement(null);
           }}
         >
-          <AiOutlineClose />
+          <X className='h-4 w-4' />
         </Button>
       </div>
       <Separator className='mb-4' />

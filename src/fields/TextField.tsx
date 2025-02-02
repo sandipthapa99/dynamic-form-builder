@@ -1,5 +1,3 @@
-import { MdTextFields } from 'react-icons/md';
-
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +22,7 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import { CaseSensitive } from 'lucide-react';
 
 const type: ElementsType = 'TextField';
 
@@ -264,7 +263,7 @@ export const TextFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: MdTextFields,
+    icon: CaseSensitive,
     label: 'Text Field',
   },
   designerComponent: DesignerComponent,

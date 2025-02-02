@@ -1,11 +1,10 @@
 import { FormElementInstance } from '@/types/form';
 import { FormElements } from './FormElements';
 import { Button } from '../ui/button';
-import { HiCursorClick } from 'react-icons/hi';
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { toast } from '@/hooks/use-toast';
-import { ImSpinner2 } from 'react-icons/im';
 import { SubmitForm } from '@/actions/form';
+import { LoaderCircle, MousePointerClick } from 'lucide-react';
 
 const FormSubmitComponent = ({
   formId,
@@ -150,11 +149,11 @@ const FormSubmitComponent = ({
         >
           {!pending ? (
             <>
-              <HiCursorClick className='mr-2' />
+              <MousePointerClick className='mr-2' />
               Submit
             </>
           ) : (
-            <ImSpinner2 className='animate-spin' />
+            <LoaderCircle className='animate-spin' />
           )}
         </Button>
       </div>

@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { LuHeading2 } from 'react-icons/lu';
+import { Heading2 } from 'lucide-react';
 
 const type: ElementsType = 'SubTitleField';
 
@@ -123,7 +123,7 @@ export const SubTitleFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: LuHeading2,
+    icon: Heading2,
     label: 'Sub title Field',
   },
   designerComponent: DesignerComponent,

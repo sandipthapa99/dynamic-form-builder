@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { LuHeading1 } from 'react-icons/lu';
+import { Heading1 } from 'lucide-react';
 
 const type: ElementsType = 'TitleField';
 
@@ -123,7 +123,7 @@ export const TitleFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: LuHeading1,
+    icon: Heading1,
     label: 'Title Field',
   },
   designerComponent: DesignerComponent,

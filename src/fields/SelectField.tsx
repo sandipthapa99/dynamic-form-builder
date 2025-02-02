@@ -1,4 +1,3 @@
-import { RxDropdownMenu } from 'react-icons/rx';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -30,10 +29,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { toast } from '@/hooks/use-toast';
+import { ListCheck, Plus, X } from 'lucide-react';
 
 const type: ElementsType = 'SelectField';
 
@@ -211,7 +210,7 @@ const PropertiesComponent = ({
                     form.setValue('options', field.value.concat('New option'));
                   }}
                 >
-                  <AiOutlinePlus />
+                  <Plus className='h-4 w-4' />
                 </Button>
               </div>
               <div className='flex flex-col gap-2'>
@@ -238,7 +237,7 @@ const PropertiesComponent = ({
                         field.onChange(newOptions);
                       }}
                     >
-                      <AiOutlineClose />
+                      <X className='h-4 w-4' />
                     </Button>
                   </div>
                 ))}
@@ -354,7 +353,7 @@ export const SelectFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: RxDropdownMenu,
+    icon: ListCheck,
     label: 'Select Field',
   },
   designerComponent: DesignerComponent,

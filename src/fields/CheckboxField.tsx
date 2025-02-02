@@ -1,5 +1,3 @@
-import { IoMdCheckbox } from 'react-icons/io';
-
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,6 +23,7 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 import { Checkbox } from '@/components/ui/checkbox';
+import { SquareCheck } from 'lucide-react';
 
 const type: ElementsType = 'CheckboxField';
 
@@ -250,7 +249,7 @@ export const CheckboxFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: IoMdCheckbox,
+    icon: SquareCheck,
     label: 'Checkbox Field',
   },
   designerComponent: DesignerComponent,

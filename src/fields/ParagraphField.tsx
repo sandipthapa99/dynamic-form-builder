@@ -13,8 +13,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { BsTextParagraph } from 'react-icons/bs';
 import { Textarea } from '@/components/ui/textarea';
+import { Text } from 'lucide-react';
 
 const type: ElementsType = 'ParagraphField';
 
@@ -124,7 +124,7 @@ export const ParagraphFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: BsTextParagraph,
+    icon: Text,
     label: 'Paragraph Field',
   },
   designerComponent: DesignerComponent,

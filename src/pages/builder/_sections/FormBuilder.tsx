@@ -17,7 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
   const { setElements, setSelectedElement } = useDesigner();
@@ -82,14 +82,14 @@ const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
           <div className='flex justify-between'>
             <Button asChild variant={'link'} className='px-0'>
               <Link to='/dashboard'>
-                <BsArrowLeft />
+                <ArrowLeft />
                 Go back home
               </Link>
             </Button>
             <Button asChild variant={'link'} className='px-0'>
               <Link to={`/dashboard/forms/${form.id}`}>
                 Form details
-                <BsArrowRight />
+                <ArrowRight />
               </Link>
             </Button>
           </div>

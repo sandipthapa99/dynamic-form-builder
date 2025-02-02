@@ -1,7 +1,6 @@
 import { toast } from '@/hooks/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { ImSpinner2 } from 'react-icons/im';
 import * as z from 'zod';
 import {
   Dialog,
@@ -27,7 +26,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { formSchema, formSchemaType } from '@/schemas/form';
-import { Plus } from 'lucide-react';
+import { LoaderCircle, Plus } from 'lucide-react';
 
 const CreateFormBtn = () => {
   const { user } = useUser();
@@ -118,7 +117,7 @@ const CreateFormBtn = () => {
           >
             {!form.formState.isSubmitting && <span>Save</span>}
             {form.formState.isSubmitting && (
-              <ImSpinner2 className='animate-spin' />
+              <LoaderCircle className='animate-spin' />
             )}
           </Button>
         </DialogFooter>

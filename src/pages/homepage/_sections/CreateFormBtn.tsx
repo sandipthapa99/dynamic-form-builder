@@ -3,7 +3,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { ImSpinner2 } from 'react-icons/im';
 import * as z from 'zod';
-import { BsFileEarmarkPlus } from 'react-icons/bs';
 import {
   Dialog,
   DialogContent,
@@ -28,6 +27,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { formSchema, formSchemaType } from '@/schemas/form';
+import { Plus } from 'lucide-react';
 
 const CreateFormBtn = () => {
   const { user } = useUser();
@@ -45,8 +45,8 @@ const CreateFormBtn = () => {
       const { id } = await CreateForm(values, user?.id);
       toast({
         title: 'Success',
-        description: 'success',
-        variant: 'default',
+        description: 'Form created successfully',
+        variant: 'success',
       });
       navigate(`builder/${id}`);
     } catch (error) {
@@ -62,9 +62,9 @@ const CreateFormBtn = () => {
       <DialogTrigger asChild>
         <Button
           variant={'outline'}
-          className='group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4 '
+          className='group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4 rounded-lg'
         >
-          <BsFileEarmarkPlus className='h-8 8-8 text-muted-foreground group-hover:text-primary' />
+          <Plus className='h-8 w-8 text-muted-foreground group-hover:text-primary' />
           <p className='font-semibold text-xl text-muted-foreground group-hover:text-primary'>
             Create new form
           </p>

@@ -16,6 +16,7 @@ import {
 } from '../ui/table';
 import { formatDistance } from 'date-fns';
 import RowCell from './RowCell';
+import { ShieldAlert } from 'lucide-react';
 
 type Row = { [key: string]: string } & {
   submittedAt: Date;
@@ -80,19 +81,38 @@ const SubmissionTable = ({ id }: { id: string | undefined }) => {
       submittedAt: submission.createdAt,
     });
   });
+
+  if (formsData && formsData?.FormSubmissions?.length <= 0) {
+    return (
+      <div className='flex items-center justify-center h-auto md:h-[300px] flex-col p-8'>
+        <ShieldAlert className='h-16 w-16 text-orange-500' />
+        <p className='mt-4 mb-2 text-3xl text-center font-semibold text-muted-foreground'>
+          Waiting for users to make Submissions
+        </p>
+        <span className='text-xl text-center text-muted-foreground'>
+          No one has made any submissions yet
+        </span>
+      </div>
+    );
+  }
   return (
     <>
-      <h1 className='text-2xl font-bold my-4'>Submissions</h1>
+      <h1 className='text-xl font-semibold my-4 text-foreground/80'>
+        Submissions
+      </h1>
       <div className='rounded-md border'>
         <Table>
           <TableHeader>
             <TableRow>
               {columns.map((col) => (
-                <TableHead key={col.id} className='uppercase'>
+                <TableHead
+                  key={col.id}
+                  className='uppercase text-foreground/80'
+                >
                   {col.label}
                 </TableHead>
               ))}
-              <TableHead className='text-muted-foreground text-right uppercase'>
+              <TableHead className='text-foreground/80 text-right uppercase'>
                 Submitted at
               </TableHead>
             </TableRow>

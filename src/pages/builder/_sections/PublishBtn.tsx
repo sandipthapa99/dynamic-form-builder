@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { MdOutlinePublish } from 'react-icons/md';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +15,7 @@ import { useTransition } from 'react';
 import { toast } from '@/hooks/use-toast';
 import { PublishForm } from '@/actions/form';
 import { useNavigate } from 'react-router-dom';
+import { Upload } from 'lucide-react';
 
 const PublishBtn = ({ id }: { id: string | undefined }) => {
   const [loading, startTransition] = useTransition();
@@ -41,8 +41,11 @@ const PublishBtn = ({ id }: { id: string | undefined }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className='gap-2 text-white bg-gradient-to-r from-blue-600 to-blue-500'>
-          <MdOutlinePublish className='h-4 w-4' />
+        <Button
+          className='gap-2 text-white bg-gradient-to-r from-blue-600 to-blue-500'
+          disabled
+        >
+          <Upload className='h-4 w-4' />
           Publish
         </Button>
       </AlertDialogTrigger>
@@ -50,13 +53,8 @@ const PublishBtn = ({ id }: { id: string | undefined }) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. After publishing you will not be able
-            to edit this form. <br />
-            <br />
-            <span className='font-medium'>
-              By publishing this form will make it available to the public and
-              you will be able to collect submissions.
-            </span>
+            This action cannot be undone. After publishing the form you will not
+            be able to edit this form.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

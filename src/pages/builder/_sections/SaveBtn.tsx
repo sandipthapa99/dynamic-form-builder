@@ -1,10 +1,9 @@
 import useDesigner from '@/hooks/useDesigner';
-import { HiSaveAs } from 'react-icons/hi';
 import { useTransition } from 'react';
-import { FaSpinner } from 'react-icons/fa';
 import { UpdateFormContent } from '@/actions/form';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
+import { Save } from 'lucide-react';
 
 const SaveBtn = ({ id }: { id: string | undefined }) => {
   const [loading, startTransition] = useTransition();
@@ -39,9 +38,8 @@ const SaveBtn = ({ id }: { id: string | undefined }) => {
         });
       }}
     >
-      <HiSaveAs className='h-4 w-4' />
+      <Save className='h-4 w-4' />
       Save
-      {loading && <FaSpinner className='animate-spin' />}
     </Button>
   );
 };

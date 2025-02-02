@@ -14,6 +14,8 @@ import { generateId } from '@/lib/generateId';
 import { ElementsType, FormElementInstance } from '@/types/form';
 import { Button } from '@/components/ui/button';
 import DesignerSidebar from './DesignerSidebar';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Layers } from 'lucide-react';
 
 const Designer = () => {
   const {
@@ -119,36 +121,42 @@ const Designer = () => {
   return (
     <div className='flex w-full h-full'>
       <div
-        className='p-4 w-full'
+        className='py-4 pr-4 w-full container'
         onClick={() => {
           if (selectedElement) setSelectedElement(null);
         }}
       >
         <div
           ref={droppable.setNodeRef}
-          className={cn(
-            'bg-background max-w-[920px] h-full m-auto rounded-xl flex flex-col flex-grow items-center justify-start flex-1 overflow-y-auto',
-            droppable.isOver && 'ring-4 ring-inset ring-primary/20'
-          )}
+          className={'bg-background h-full rounded-xl flex flex-col flex-grow'}
         >
           {!droppable.isOver && elements.length === 0 && (
-            <p className='text-3xl text-muted-foreground flex flex-grow items-center font-bold'>
-              Drop here
-            </p>
-          )}
-          {droppable.isOver && elements.length === 0 && (
-            <div className='p-4 w-full'>
-              <div className='h-[120px] rounded-md bg-secondary' />
+            <div className=' flex flex-col flex-grow items-center justify-center h-full text-muted-foreground'>
+              <Layers className='h-12 w-12 mb-6' />
+              <p className='text-2xl font-semibold text-center px-1'>
+                Drag & Drop elements here
+              </p>
             </div>
           )}
-
-          {elements.length > 0 && (
-            <div className='flex flex-col w-full gap-2 p-4'>
-              {elements.map((element) => (
-                <DesignerElementWrapper key={element.id} element={element} />
-              ))}
-            </div>
-          )}
+          <ScrollArea
+            className={cn(
+              'max-w-[990px] flex items-center justify-center flex-1 overflow-y-auto  ',
+              droppable.isOver && 'ring-4 ring-inset ring-primary/20'
+            )}
+          >
+            {droppable.isOver && elements.length === 0 && (
+              <div className='p-4 w-full'>
+                <div className='h-[120px] rounded-md bg-secondary' />
+              </div>
+            )}
+            {elements.length > 0 && (
+              <div className='flex flex-col w-full gap-2 p-4'>
+                {elements.map((element) => (
+                  <DesignerElementWrapper key={element.id} element={element} />
+                ))}
+              </div>
+            )}
+          </ScrollArea>
         </div>
       </div>
       <DesignerSidebar />

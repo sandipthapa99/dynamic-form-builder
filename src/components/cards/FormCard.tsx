@@ -8,12 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-import { LuView } from 'react-icons/lu';
-import { FaEdit, FaWpforms } from 'react-icons/fa';
 import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
-import { BiRightArrowAlt } from 'react-icons/bi';
 import { FormResponseType } from '@/types/form';
+import { ArrowRight, Pencil, ReceiptText, View } from 'lucide-react';
 
 const FormCard = ({ form }: { form: FormResponseType }) => {
   return (
@@ -22,9 +20,9 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
         <CardTitle className='flex items-center gap-2 justify-between'>
           <span className='truncate font-bold'>{form.name}</span>
           {form.published ? (
-            <Badge>Published</Badge>
+            <Badge className='bg-green-600 hover:bg-green-600'>Published</Badge>
           ) : (
-            <Badge variant={'destructive'}>Draft</Badge>
+            <Badge className='bg-orange-500 hover:bg-orange-500'>Draft</Badge>
           )}
         </CardTitle>
         <CardDescription className='flex items-center justify-between text-muted-foreground text-sm'>
@@ -33,10 +31,10 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
           })}
           {form.published && (
             <span className='flex items-center gap-2'>
-              <LuView className='text-muted-foreground' />
-              <span>4</span>
-              <FaWpforms className='text-muted-foreground' />
-              <span>5</span>
+              <View className='text-muted-foreground h-4 w-4' />
+              <span>{form?.visits}</span>
+              <ReceiptText className='text-muted-foreground h-4 w-4' />
+              <span>{form?.submissions}</span>
             </span>
           )}
         </CardDescription>
@@ -51,8 +49,8 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
             variant={'default'}
             className='w-full mt-2 text-md gap-4'
           >
-            <Link to={`forms/${form.id}`}>
-              View Submissions <BiRightArrowAlt />
+            <Link to={`forms/${form.id}`} className=''>
+              View Submissions <ArrowRight className='h-4 w-4' />
             </Link>
           </Button>
         ) : (
@@ -62,7 +60,7 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
             className='w-full mt-2 text-md gap-4'
           >
             <Link to={`builder/${form.id}`}>
-              Edit Form <FaEdit />
+              Edit Form <Pencil className='h-4 w-4' />
             </Link>
           </Button>
         )}

@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import useDesigner from '@/hooks/useDesigner';
-import { MdPreview } from 'react-icons/md';
+import { Eye } from 'lucide-react';
 
 const PreviewBtn = () => {
   const { elements } = useDesigner();
@@ -15,7 +15,7 @@ const PreviewBtn = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={'outline'} className='gap-2'>
-          <MdPreview className='h-6 w-6' />
+          <Eye className='h-4 w-4' />
           Preview
         </Button>
       </DialogTrigger>
@@ -29,7 +29,7 @@ const PreviewBtn = () => {
             This is how the form will look like
           </p>
         </div>
-        <div className='flex flex-col flex-grow items-center bg-accent bg-[url(/paper.svg)] dark:bg-[url(/paper-dark.svg)] overflow-y-auto p-4'>
+        <div className='flex flex-col flex-grow items-center bg-accent bg-[url(/bg.svg)] dark:bg-[url(/bg-dark.svg)] overflow-y-auto p-4'>
           <div className='max-w-[620px] flex flex-grow flex-col gap-4 bg-background h-full w-full rounded-2xl p-8 overflow-y-auto '>
             {elements.map((element) => {
               const FormElement = FormElements[element.type].formComponent;

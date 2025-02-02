@@ -5,9 +5,8 @@ import SubmissionTable from '@/components/common/SubmissionTable';
 import VisitBtn from '@/components/common/VisitBtn';
 import { FormResponseType } from '@/types/form';
 import { useUser } from '@clerk/clerk-react';
+import { MousePointerClick, ReceiptText, Undo2, View } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { FaWpforms } from 'react-icons/fa';
-import { LuView } from 'react-icons/lu';
 import { useParams } from 'react-router-dom';
 
 const FormDetailPage = () => {
@@ -35,59 +34,65 @@ const FormDetailPage = () => {
     }
   }, [user?.id, id]);
   return (
-    <>
-      <div className='py-10 border-t border-b border-muted'>
-        <div className='flex justify-between container mx-auto'>
-          <h1 className='text-4xl font-bold truncate'>{formData?.name}</h1>
-          <VisitBtn shareUrl={formData?.id} />
-        </div>
-      </div>
-      <div className='py-4 border-b border-muted'>
-        <div className='container px-common flex gap-2 items-center justify-between'>
-          <div className='flex container gap-2 items-center justify-between'>
-            <FormLinkShare shareUrl={formData?.id} />
+    <div className='container px-common'>
+      <div className='py-4 sm:py-10 '>
+        <div className='flex justify-between items-center flex-wrap'>
+          <h1 className='text-3xl lg:text-4xl font-semibold truncate text-foreground/80'>
+            {formData?.name}
+          </h1>
+          <div className='flex items-center gap-4'>
+            <div className='py-4'>
+              <div className='flex gap-2 items-center justify-between'>
+                <div className='flex gap-2 items-center justify-between'>
+                  <FormLinkShare shareUrl={formData?.id} />
+                </div>
+              </div>
+            </div>
+
+            <VisitBtn shareUrl={formData?.id} />
           </div>
         </div>
       </div>
-      <div className='w-full pt-8 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 container px-common'>
+
+      <div className='w-full pt-4 md:pt-8 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
         <StatsCard
           title={'Total visits'}
-          icon={<LuView className='text-blue-600' />}
+          icon={<View className='text-blue-600 h-4 w-4' />}
           helperText={'All time form Visits'}
           value={formData?.visits?.toLocaleString() ?? '0'}
           loading={false}
-          className='shadow-md shadow-blue-600'
+          className='text-blue-600'
         />
         <StatsCard
           title={'Total submissions'}
-          icon={<FaWpforms className='text-yellow-600' />}
+          icon={<ReceiptText className='text-orange-600 h-4 w-4' />}
           helperText={'All time form submissions'}
           value={formData?.submissions?.toLocaleString() ?? '0'}
           loading={false}
-          className='shadow-md shadow-yellow-600'
+          className='text-orange-500'
         />
         <StatsCard
           title={'Submission rate'}
-          icon={<LuView className='text-green-600' />}
+          icon={<MousePointerClick className='text-green-600 h-4 w-4' />}
           helperText={'Visits that result in form submission'}
           value={submissionRate.toLocaleString() + '%' || '0'}
           loading={false}
-          className='shadow-md shadow-green-600'
+          className='text-green-600'
         />
         <StatsCard
           title={'Bounce rate'}
-          icon={<LuView className='text-red-600' />}
+          icon={<Undo2 className='text-red-600 h-4 w-4' />}
           helperText={'Visits that leave without form interaction'}
           value={bounceRate.toLocaleString() + '%' || '0'}
           loading={false}
-          className='shadow-md shadow-red-600'
+          className='text-red-600'
         />
       </div>
 
-      <div className='container pt-10'>
+      <div className='pt-10'>
         <SubmissionTable id={id} />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -25,7 +25,7 @@ const SubmitPage = () => {
   const formContent = (formData?.content as FormElementInstance[]) ?? [];
 
   return (
-    <div className='flex flex-col h-[calc(100vh-60px)]'>
+    <div className='flex flex-col h-[calc(100vh-90px)]'>
       <FormSubmitComponent formId={formData?.id} content={formContent} />
     </div>
   );

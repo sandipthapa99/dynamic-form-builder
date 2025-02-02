@@ -3,25 +3,30 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className='container mx-auto flex justify-between items-center border-border h-[60px] px-common py-2'>
-      <Link to={'/'} className='font-bold text-3xl '>
-        Form Builder
-      </Link>
-      <SignedIn>
-        <div className='flex gap-4'>
-          <UserButton />
-        </div>
-      </SignedIn>
-      <SignedOut>
+    <header className='h-[90px] border-b border-muted flex items-center'>
+      <div className='container flex justify-between items-center px-common py-2'>
         <Link
-          to='sign-in'
-          className='relative flex h-9 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'
+          to={'/'}
+          className='font-bold text-lg sm:text-2xl md:text-3xl bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent'
         >
-          <span className='relative text-base font-medium text-primary'>
-            Sign In
-          </span>
+          Dynamic Form Builder
         </Link>
-      </SignedOut>
+        <SignedIn>
+          <div className='flex gap-4'>
+            <UserButton />
+          </div>
+        </SignedIn>
+        <SignedOut>
+          <Link
+            to='sign-in'
+            className='relative flex h-9 w-[120px] md:w-[200px] items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'
+          >
+            <span className='relative text-base font-medium text-primary'>
+              Sign In
+            </span>
+          </Link>
+        </SignedOut>
+      </div>
     </header>
   );
 };

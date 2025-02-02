@@ -20,7 +20,7 @@ const StatsCard = ({
   return (
     <Card className={className}>
       <CardHeader className='flex flex-row items-center justify-between pb-2'>
-        <CardTitle className='text-sm font-medium text-muted-foreground'>
+        <CardTitle className='text-[16px] font-medium text-foreground'>
           {title}
         </CardTitle>
         {icon}

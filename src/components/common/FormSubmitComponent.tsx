@@ -94,9 +94,18 @@ const FormSubmitComponent = ({
 
   if (submitted) {
     return (
-      <div className='flex justify-center items-center w-full h-full p-8'>
-        <div className='max-w-[620px] flex flex-col gap-4 flex-grow bg-background w-full p-8 overflow-y-auto border shadow-xl shadow-blue-700 rounded'>
-          <h1 className='text-2xl font-bold '>Form Submitted</h1>
+      <div className='flex justify-center items-center w-full h-full p-8 relative'>
+        <div
+          aria-hidden='true'
+          className='absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20'
+        >
+          <div className='blur-[150px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700'></div>
+          <div className='blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600'></div>
+        </div>
+        <div className='max-w-[620px] flex flex-col gap-4 flex-grow bg-background rounded-xl w-full p-8 overflow-y-auto border z-10 items-center text-center'>
+          <h1 className='text-2xl font-bold capitalize bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent'>
+            Form Submitted Successfully!
+          </h1>
           <p className='text-muted-foreground'>
             Thank you for your response. You can close this page now
           </p>
@@ -106,10 +115,17 @@ const FormSubmitComponent = ({
   }
 
   return (
-    <div className='flex justify-center w-full h-full items-center p-8'>
+    <div className='flex justify-center w-full h-full items-center p-8 relative'>
+      <div
+        aria-hidden='true'
+        className='absolute inset-0 grid grid-cols-2 -space-x-52 opacity-30 dark:opacity-20'
+      >
+        <div className='blur-[150px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700'></div>
+        <div className='blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600'></div>
+      </div>
       <div
         key={renderKey}
-        className='max-w-[620px] flex flex-col gap-4 flex-grow bg-background w-full p-8 overflow-y-auto border shadow-xl shadow-blue-700 rounded'
+        className='max-w-[620px] flex flex-col gap-4 flex-grow bg-background/50 w-full p-8 overflow-y-auto border rounded-xl z-10'
       >
         {content.map((item) => {
           const FormElement = FormElements[item.type].formComponent;

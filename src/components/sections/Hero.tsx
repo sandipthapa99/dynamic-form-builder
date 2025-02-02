@@ -12,8 +12,8 @@ const Hero = () => {
       </div>
       <div className='relative pt-36 mx-auto container'>
         <div className=' text-center mx-auto'>
-          <h1 className='text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl'>
-            Build Forms—Fast & Flexible <br />
+          <h1 className='text-gray-900 dark:text-white font-bold text-4xl md:text-6xl xl:text-7xl'>
+            Build Forms—Fast & Flexible
             <p className=' mt-4 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent'>
               No Code Required
             </p>

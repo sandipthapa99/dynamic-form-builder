@@ -1,74 +1,6 @@
 {
   "forms": [
     {
-      "id": "8e86",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T08:49:37.517Z",
-      "published": true,
-      "name": "User Form",
-      "description": "This is a user form",
-      "content": [
-        {
-          "id": "8920",
-          "type": "TitleField",
-          "extraAttributes": {
-            "title": "Title field"
-          }
-        },
-        {
-          "id": "44",
-          "type": "TitleField",
-          "extraAttributes": {
-            "title": "Title field"
-          }
-        },
-        {
-          "id": "3830",
-          "type": "SeparatorField"
-        },
-        {
-          "id": "1329",
-          "type": "NumberField",
-          "extraAttributes": {
-            "label": "Number field",
-            "helperText": "",
-            "required": false,
-            "placeholder": "0"
-          }
-        },
-        {
-          "id": "4810",
-          "type": "SubTitleField",
-          "extraAttributes": {
-            "title": "Sub title field"
-          }
-        },
-        {
-          "id": "4997",
-          "type": "TextField",
-          "extraAttributes": {
-            "label": "Text field",
-            "helperText": "",
-            "required": false,
-            "placeholder": "Placeholder value"
-          }
-        }
-      ],
-      "visits": 60,
-      "submissions": 3
-    },
-    {
-      "id": "46ee",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T11:39:02.970Z",
-      "published": false,
-      "name": "dsfg",
-      "description": "",
-      "content": [],
-      "visits": 1,
-      "submissions": 0
-    },
-    {
       "id": "ee86",
       "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
       "createdAt": "2025-02-02T11:46:22.681Z",
@@ -91,32 +23,6 @@
       "submissions": 0
     },
     {
-      "id": "2ea4",
-      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
-      "createdAt": "2025-02-02T11:54:05.781Z",
-      "published": true,
-      "name": "test",
-      "description": "",
-      "content": [
-        {
-          "id": "2721",
-          "type": "TitleField",
-          "extraAttributes": {
-            "title": "Title field"
-          }
-        },
-        {
-          "id": "8453",
-          "type": "SubTitleField",
-          "extraAttributes": {
-            "title": "Sub title field"
-          }
-        }
-      ],
-      "visits": 2,
-      "submissions": 1
-    },
-    {
       "id": "7ee4",
       "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
       "createdAt": "2025-02-02T11:59:53.185Z",
@@ -128,30 +34,5 @@
       "submissions": 0
     }
   ],
-  "formSubmissions": [
-    {
-      "id": "1738495868726",
-      "createdAt": "2025-02-02T11:31:08.726Z",
-      "formId": "8e86",
-      "content": "{\"1329\":\"345\",\"4997\":\"wer\"}"
-    },
-    {
-      "id": "1738496508592",
-      "createdAt": "2025-02-02T11:41:48.592Z",
-      "formId": "8e86",
-      "content": "{}"
-    },
-    {
-      "id": "1738497282859",
-      "createdAt": "2025-02-02T11:54:42.859Z",
-      "formId": "2ea4",
-      "content": "{}"
-    },
-    {
-      "id": "1738499485988",
-      "createdAt": "2025-02-02T12:31:25.988Z",
-      "formId": "8e86",
-      "content": "{}"
-    }
-  ]
+  "formSubmissions": []
 }

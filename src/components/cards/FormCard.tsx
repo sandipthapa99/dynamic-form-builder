@@ -12,6 +12,7 @@ import { Button } from '../ui/button';
 import { Link } from 'react-router-dom';
 import { FormResponseType } from '@/types/form';
 import { ArrowRight, Pencil, ReceiptText, View } from 'lucide-react';
+import DeleteFormBtn from '../common/DeleteFormBtn';
 
 const FormCard = ({ form }: { form: FormResponseType }) => {
   return (
@@ -19,11 +20,18 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
       <CardHeader>
         <CardTitle className='flex items-center gap-2 justify-between'>
           <span className='truncate font-bold'>{form.name}</span>
-          {form.published ? (
-            <Badge className='bg-green-600 hover:bg-green-600'>Published</Badge>
-          ) : (
-            <Badge className='bg-orange-500 hover:bg-orange-500'>Draft</Badge>
-          )}
+          <div className='flex items-center gap-2'>
+            <DeleteFormBtn id={form.id} />
+            {form.published ? (
+              <Badge className='bg-green-600 hover:bg-green-600 h-6'>
+                Published
+              </Badge>
+            ) : (
+              <Badge className='bg-yellow-500 hover:bg-orange-500 h-6'>
+                Draft
+              </Badge>
+            )}
+          </div>
         </CardTitle>
         <CardDescription className='flex items-center justify-between text-muted-foreground text-sm'>
           {formatDistance(form.createdAt, new Date(), {

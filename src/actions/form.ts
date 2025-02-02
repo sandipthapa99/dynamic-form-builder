@@ -276,3 +276,49 @@ export const GetFormWithSubmissions = async (
     throw error;
   }
 };
+
+export const DeleteForm = async (formId: string | undefined) => {
+  if (!formId) {
+    throw new Error('Form ID is required');
+  }
+
+  try {
+    // Fetch form submissions for the given formId to delete submissions first
+    const submissionsResponse = await fetch(
+      `${import.meta.env.VITE_API_KEY}/formSubmissions?formId=${formId}`
+    );
+    if (!submissionsResponse.ok) {
+      throw new Error('Failed to fetch form submissions');
+    }
+
+    const submissions = await submissionsResponse.json();
+
+    // Delete each submission
+    for (const submission of submissions) {
+      const deleteSubmissionResponse = await fetch(
+        `${import.meta.env.VITE_API_KEY}/formSubmissions/${submission.id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      if (!deleteSubmissionResponse.ok) {
+        throw new Error('Failed to delete submission');
+      }
+    }
+
+    // Finally delete the form
+    const response = await fetch(
+      `${import.meta.env.VITE_API_KEY}/forms/${formId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to delete form');
+    }
+  } catch (error) {
+    console.error('Error deleting form or its submissions:', error);
+    throw error;
+  }
+};

@@ -47,4 +47,8 @@ export type FormElementInstance = {
   extraAttributes?: Record<string, any>;
 };
 
-export type ElementsType = 'TextField';
+export type ElementsType =
+  | 'TextField'
+  | 'TitleField'
+  | 'SubTitleField'
+  | 'ParagraphField';

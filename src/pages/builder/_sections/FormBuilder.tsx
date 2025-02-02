@@ -20,7 +20,6 @@ import { Link } from 'react-router-dom';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 
 const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
-  console.log('🚀 ~ FormBuilder ~ form:', form);
   const { setElements } = useDesigner();
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {

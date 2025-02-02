@@ -1,13 +1,16 @@
 import { GetFormById } from '@/actions/form';
-import FormLinkShare from '@/components/common/FormLinkShare';
-import StatsCard from '@/components/common/StatsCard';
-import SubmissionTable from '@/components/common/SubmissionTable';
-import VisitBtn from '@/components/common/VisitBtn';
 import { FormResponseType } from '@/types/form';
 import { useUser } from '@clerk/clerk-react';
 import { MousePointerClick, ReceiptText, Undo2, View } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+const FormLinkShare = lazy(() => import('@/components/common/FormLinkShare'));
+const StatsCard = lazy(() => import('@/components/common/StatsCard'));
+const SubmissionTable = lazy(
+  () => import('@/components/common/SubmissionTable')
+);
+const VisitBtn = lazy(() => import('@/components/common/VisitBtn'));
 
 const FormDetailPage = () => {
   const { id } = useParams();

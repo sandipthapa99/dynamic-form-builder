@@ -42,8 +42,8 @@ const DeleteFormBtn = ({ id }: { id: string | undefined }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <div className='bg-red-500 p-1 rounded h-6 w-6 flex items-center justify-center'>
-          <Trash className='h-6 w-6 cursor-pointer text-white' />
+        <div className='bg-red-200 p-1 rounded h-6 w-6 flex items-center justify-center'>
+          <Trash className='h-6 w-6 cursor-pointer text-red-500' />
         </div>
       </AlertDialogTrigger>
       <AlertDialogContent>

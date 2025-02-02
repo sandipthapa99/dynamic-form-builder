@@ -23,11 +23,11 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
           <div className='flex items-center gap-2'>
             <DeleteFormBtn id={form.id} />
             {form.published ? (
-              <Badge className='bg-green-600 hover:bg-green-600 h-6'>
+              <Badge className='bg-green-200 hover:bg-green-200 h-6 text-green-700 shadow-none'>
                 Published
               </Badge>
             ) : (
-              <Badge className='bg-yellow-500 hover:bg-orange-500 h-6'>
+              <Badge className='bg-orange-200 hover:bg-orange-200 text-orange-500 h-6 shadow-none'>
                 Draft
               </Badge>
             )}
@@ -38,7 +38,7 @@ const FormCard = ({ form }: { form: FormResponseType }) => {
             addSuffix: true,
           })}
           {form.published && (
-            <span className='flex items-center gap-2'>
+            <span className='flex gap-2'>
               <View className='text-muted-foreground h-4 w-4' />
               <span>{form?.visits}</span>
               <ReceiptText className='text-muted-foreground h-4 w-4' />

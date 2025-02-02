@@ -1,4 +1,4 @@
-import { MdTextFields } from 'react-icons/md';
+import { IoMdCheckbox } from 'react-icons/io';
 
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -24,21 +24,20 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import { Checkbox } from '@/components/ui/checkbox';
 
-const type: ElementsType = 'TextField';
+const type: ElementsType = 'CheckboxField';
 
 const extraAttributes = {
-  label: 'Text field',
+  label: 'Checkbox field',
   helperText: '',
   required: false,
-  placeholder: 'Placeholder value',
 };
 
 const propertiesSchema = z.object({
   label: z.string().min(2).max(50),
   helperText: z.string().max(200),
   required: z.boolean().default(false),
-  placeholder: z.string().max(50),
 });
 
 const DesignerComponent = ({
@@ -47,17 +46,20 @@ const DesignerComponent = ({
   elementInstance: FormElementInstance;
 }) => {
   const element = elementInstance as CustomInstance;
-  const { label, helperText, placeholder, required } = element.extraAttributes;
+  const { label, helperText, required } = element.extraAttributes;
+  const id = `checkbox-${element.id}`;
   return (
-    <div className='flex flex-col gap-2 w-full'>
-      <Label>
-        {label}
-        {required && <span className='text-red-500 ml-1'>*</span>}
-      </Label>
-      <Input readOnly disabled placeholder={placeholder} />
-      {helperText && (
-        <p className='text-muted-foreground text-[8px]'>{helperText}</p>
-      )}
+    <div className='flex items-center space-x-2'>
+      <Checkbox id={id} />
+      <div className='grid gap-1.5 leading-none'>
+        <Label htmlFor={id}>
+          {label}
+          {required && <span className='text-red-500 ml-1'>*</span>}
+        </Label>
+        {helperText && (
+          <p className='text-muted-foreground text-[8px]'>{helperText}</p>
+        )}
+      </div>
     </div>
   );
 };
@@ -77,7 +79,6 @@ const PropertiesComponent = ({
       label: element.extraAttributes.label,
       helperText: element.extraAttributes.helperText,
       required: element.extraAttributes.required,
-      placeholder: element.extraAttributes.placeholder,
     },
   });
 
@@ -86,13 +87,12 @@ const PropertiesComponent = ({
   }, [element.extraAttributes, form]);
 
   const applyChanges = (values: propertiesFormSchemaType) => {
-    const { label, helperText, placeholder, required } = values;
+    const { label, helperText, required } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
         label,
         helperText,
-        placeholder,
         required,
       },
     });
@@ -131,27 +131,7 @@ const PropertiesComponent = ({
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name='placeholder'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Placeholder</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.currentTarget.blur();
-                    }
-                  }}
-                />
-              </FormControl>
-              <FormDescription>The placeholder of the field</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name='helperText'
@@ -214,7 +194,7 @@ const FormComponent = ({
   isInvalid?: boolean;
   defaultValue?: string;
 }) => {
-  const [value, setValue] = useState(defaultValue || '');
+  const [value, setValue] = useState<boolean>(defaultValue === 'true');
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -222,41 +202,47 @@ const FormComponent = ({
   }, [isInvalid]);
 
   const element = elementInstance as CustomInstance;
-  const { label, helperText, placeholder, required } = element.extraAttributes;
+  const { label, helperText, required } = element.extraAttributes;
+  const id = `checkbox-${element.id}`;
   return (
-    <div className='flex flex-col gap-2 w-full'>
-      <Label className={cn(error && 'text-red-500')}>
-        {label}
-        {required && <span className='text-red-500'>*</span>}
-      </Label>
-      <Input
-        placeholder={placeholder}
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
-          if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
-          setError(!valid);
-          if (!valid) return;
-          submitValue(element.id, e.target.value);
-        }}
-        value={value}
+    <div className='flex items-center space-x-2'>
+      <Checkbox
+        id={id}
+        checked={value}
         className={cn(error && 'border-red-500')}
+        onCheckedChange={(checked) => {
+          let value = false;
+          if (checked === true) value = true;
+          setValue(value);
+
+          if (!submitValue) return;
+          const stringValue = value ? 'true' : 'false';
+          const valid = CheckboxFieldFormElement.validate(element, stringValue);
+          setError(!valid);
+          submitValue(element.id, stringValue);
+        }}
       />
-      {helperText && (
-        <p
-          className={cn(
-            'text-muted-foreground text-[8px]',
-            error && 'text-red-500'
-          )}
-        >
-          {helperText}
-        </p>
-      )}
+      <div className='grid gap-1.5 leading-none'>
+        <Label htmlFor={id} className={cn(error && 'text-red-500')}>
+          {label}
+          {required && <span className='text-red-500 ml-1'>*</span>}
+        </Label>
+        {helperText && (
+          <p
+            className={cn(
+              'text-muted-foreground text-[8px]',
+              error && 'text-red-500'
+            )}
+          >
+            {helperText}
+          </p>
+        )}
+      </div>
     </div>
   );
 };
 
-export const TextFieldFormElement: FormElement = {
+export const CheckboxFieldFormElement: FormElement = {
   type,
   construct: (id: string) => ({
     id,
@@ -264,8 +250,8 @@ export const TextFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: MdTextFields,
-    label: 'Text Field',
+    icon: IoMdCheckbox,
+    label: 'Checkbox Field',
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
@@ -276,7 +262,7 @@ export const TextFieldFormElement: FormElement = {
   ): boolean => {
     const element = formElement as CustomInstance;
     if (element.extraAttributes.required) {
-      return currentValue.length > 0;
+      return currentValue === 'true';
     }
     return true;
   },

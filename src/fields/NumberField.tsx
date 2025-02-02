@@ -1,5 +1,3 @@
-import { MdTextFields } from 'react-icons/md';
-
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,14 +22,15 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import { Bs123 } from 'react-icons/bs';
 
-const type: ElementsType = 'TextField';
+const type: ElementsType = 'NumberField';
 
 const extraAttributes = {
-  label: 'Text field',
+  label: 'Number field',
   helperText: '',
   required: false,
-  placeholder: 'Placeholder value',
+  placeholder: '0',
 };
 
 const propertiesSchema = z.object({
@@ -54,7 +53,7 @@ const DesignerComponent = ({
         {label}
         {required && <span className='text-red-500 ml-1'>*</span>}
       </Label>
-      <Input readOnly disabled placeholder={placeholder} />
+      <Input type='number' readOnly disabled placeholder={placeholder} />
       {helperText && (
         <p className='text-muted-foreground text-[8px]'>{helperText}</p>
       )}
@@ -230,11 +229,15 @@ const FormComponent = ({
         {required && <span className='text-red-500'>*</span>}
       </Label>
       <Input
+        type='number'
         placeholder={placeholder}
         onChange={(e) => setValue(e.target.value)}
         onBlur={(e) => {
           if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
+          const valid = NumberFieldFormElement.validate(
+            element,
+            e.target.value
+          );
           setError(!valid);
           if (!valid) return;
           submitValue(element.id, e.target.value);
@@ -256,7 +259,7 @@ const FormComponent = ({
   );
 };
 
-export const TextFieldFormElement: FormElement = {
+export const NumberFieldFormElement: FormElement = {
   type,
   construct: (id: string) => ({
     id,
@@ -264,8 +267,8 @@ export const TextFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: MdTextFields,
-    label: 'Text Field',
+    icon: Bs123,
+    label: 'Number Field',
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,

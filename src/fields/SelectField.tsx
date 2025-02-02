@@ -1,5 +1,4 @@
-import { MdTextFields } from 'react-icons/md';
-
+import { RxDropdownMenu } from 'react-icons/rx';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,14 +23,26 @@ import {
 } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { toast } from '@/hooks/use-toast';
 
-const type: ElementsType = 'TextField';
+const type: ElementsType = 'SelectField';
 
 const extraAttributes = {
-  label: 'Text field',
+  label: 'Select field',
   helperText: '',
   required: false,
   placeholder: 'Placeholder value',
+  options: [],
 };
 
 const propertiesSchema = z.object({
@@ -39,6 +50,7 @@ const propertiesSchema = z.object({
   helperText: z.string().max(200),
   required: z.boolean().default(false),
   placeholder: z.string().max(50),
+  options: z.array(z.string()).default([]),
 });
 
 const DesignerComponent = ({
@@ -54,7 +66,11 @@ const DesignerComponent = ({
         {label}
         {required && <span className='text-red-500 ml-1'>*</span>}
       </Label>
-      <Input readOnly disabled placeholder={placeholder} />
+      <Select>
+        <SelectTrigger className='w-full'>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+      </Select>
       {helperText && (
         <p className='text-muted-foreground text-[8px]'>{helperText}</p>
       )}
@@ -69,15 +85,16 @@ const PropertiesComponent = ({
   elementInstance: FormElementInstance;
 }) => {
   const element = elementInstance as CustomInstance;
-  const { updateElement } = useDesigner();
+  const { updateElement, setSelectedElement } = useDesigner();
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       label: element.extraAttributes.label,
       helperText: element.extraAttributes.helperText,
       required: element.extraAttributes.required,
       placeholder: element.extraAttributes.placeholder,
+      options: element.extraAttributes.options,
     },
   });
 
@@ -86,7 +103,7 @@ const PropertiesComponent = ({
   }, [element.extraAttributes, form]);
 
   const applyChanges = (values: propertiesFormSchemaType) => {
-    const { label, helperText, placeholder, required } = values;
+    const { label, helperText, placeholder, required, options } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
@@ -94,19 +111,21 @@ const PropertiesComponent = ({
         helperText,
         placeholder,
         required,
+        options,
       },
     });
+
+    toast({
+      title: 'Success',
+      description: 'Properties saved successfully',
+      variant: 'success',
+    });
+    setSelectedElement(null);
   };
 
   return (
     <Form {...form}>
-      <form
-        onBlur={form.handleSubmit(applyChanges)}
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        className='space-y-3'
-      >
+      <form onSubmit={form.handleSubmit(applyChanges)} className='space-y-3'>
         <FormField
           control={form.control}
           name='label'
@@ -176,6 +195,64 @@ const PropertiesComponent = ({
             </FormItem>
           )}
         />
+        <Separator />
+        <FormField
+          control={form.control}
+          name='options'
+          render={({ field }) => (
+            <FormItem>
+              <div className='flex justify-between items-center'>
+                <FormLabel>Options</FormLabel>
+                <Button
+                  variant={'outline'}
+                  className='gap-2'
+                  onClick={(e) => {
+                    e.preventDefault();
+                    form.setValue('options', field.value.concat('New option'));
+                  }}
+                >
+                  <AiOutlinePlus />
+                </Button>
+              </div>
+              <div className='flex flex-col gap-2'>
+                {form.watch('options').map((option, index) => (
+                  <div
+                    className='flex items-center justify-between gap-1'
+                    key={index}
+                  >
+                    <Input
+                      placeholder=''
+                      value={option}
+                      onChange={(e) => {
+                        field.value[index] = e.target.value;
+                        field.onChange(field.value);
+                      }}
+                    />
+                    <Button
+                      variant={'ghost'}
+                      size={'icon'}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const newOptions = [...field.value];
+                        newOptions.splice(index, 1);
+                        field.onChange(newOptions);
+                      }}
+                    >
+                      <AiOutlineClose />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              <FormDescription>
+                The helper text of the field <br />
+                It will be displayed below the field
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Separator />
+
         <FormField
           control={form.control}
           name='required'
@@ -198,6 +275,10 @@ const PropertiesComponent = ({
             </FormItem>
           )}
         />
+        <Separator />
+        <Button className='w-full' type='submit'>
+          Save
+        </Button>
       </form>
     </Form>
   );
@@ -222,26 +303,35 @@ const FormComponent = ({
   }, [isInvalid]);
 
   const element = elementInstance as CustomInstance;
-  const { label, helperText, placeholder, required } = element.extraAttributes;
+  const { label, helperText, placeholder, required, options } =
+    element.extraAttributes;
   return (
     <div className='flex flex-col gap-2 w-full'>
       <Label className={cn(error && 'text-red-500')}>
         {label}
         {required && <span className='text-red-500'>*</span>}
       </Label>
-      <Input
-        placeholder={placeholder}
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
+      <Select
+        defaultValue={value}
+        onValueChange={(value) => {
+          setValue(value);
           if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
+          const valid = SelectFieldFormElement.validate(element, value);
           setError(!valid);
-          if (!valid) return;
-          submitValue(element.id, e.target.value);
+          submitValue(element.id, value);
         }}
-        value={value}
-        className={cn(error && 'border-red-500')}
-      />
+      >
+        <SelectTrigger className={cn('w-full', error && 'border-red-500')}>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => (
+            <SelectItem key={option} value={option}>
+              {option}{' '}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
       {helperText && (
         <p
           className={cn(
@@ -256,7 +346,7 @@ const FormComponent = ({
   );
 };
 
-export const TextFieldFormElement: FormElement = {
+export const SelectFieldFormElement: FormElement = {
   type,
   construct: (id: string) => ({
     id,
@@ -264,8 +354,8 @@ export const TextFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: MdTextFields,
-    label: 'Text Field',
+    icon: RxDropdownMenu,
+    label: 'Select Field',
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,

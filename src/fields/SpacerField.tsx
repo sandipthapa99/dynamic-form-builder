@@ -13,17 +13,18 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { BsTextParagraph } from 'react-icons/bs';
-import { Textarea } from '@/components/ui/textarea';
+import { LuSeparatorHorizontal } from 'react-icons/lu';
+import { LucideSeparatorHorizontal } from 'lucide-react';
+import { Slider } from '@/components/ui/slider';
 
-const type: ElementsType = 'ParagraphField';
+const type: ElementsType = 'SpacerField';
 
 const extraAttributes = {
-  text: 'Text here',
+  height: 20,
 };
 
 const propertiesSchema = z.object({
-  text: z.string().min(2).max(500),
+  height: z.number().min(5).max(200),
 });
 
 const DesignerComponent = ({
@@ -32,11 +33,11 @@ const DesignerComponent = ({
   elementInstance: FormElementInstance;
 }) => {
   const element = elementInstance as CustomInstance;
-  const { text } = element.extraAttributes;
+  const { height } = element.extraAttributes;
   return (
-    <div className='flex flex-col gap-2 w-full'>
-      <Label className='text-muted-foreground'>Paragraph field</Label>
-      <p>{text}</p>
+    <div className='flex flex-col gap-2 w-full items-center'>
+      <Label className='text-muted-foreground'>Spacer field: {height}px</Label>
+      <LucideSeparatorHorizontal className='h-8 w-8' />
     </div>
   );
 };
@@ -47,8 +48,8 @@ const FormComponent = ({
   elementInstance: FormElementInstance;
 }) => {
   const element = elementInstance as CustomInstance;
-  const { text } = element.extraAttributes;
-  return <p>{text}</p>;
+  const { height } = element.extraAttributes;
+  return <div style={{ height, width: '100%' }}></div>;
 };
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
@@ -63,7 +64,7 @@ const PropertiesComponent = ({
     resolver: zodResolver(propertiesSchema),
     mode: 'onBlur',
     defaultValues: {
-      text: element.extraAttributes.text,
+      height: element.extraAttributes.height,
     },
   });
 
@@ -72,11 +73,11 @@ const PropertiesComponent = ({
   }, [element.extraAttributes, form]);
 
   const applyChanges = (values: propertiesFormSchemaType) => {
-    const { text } = values;
+    const { height } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
-        text,
+        height,
       },
     });
   };
@@ -92,18 +93,18 @@ const PropertiesComponent = ({
       >
         <FormField
           control={form.control}
-          name='text'
+          name='height'
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Text</FormLabel>
+              <FormLabel>Height (px): {form.watch('height')}</FormLabel>
               <FormControl>
-                <Textarea
-                  rows={5}
-                  {...field}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.currentTarget.blur();
-                    }
+                <Slider
+                  defaultValue={[field.value]}
+                  min={5}
+                  max={200}
+                  step={1}
+                  onValueChange={(value) => {
+                    field.onChange(value[0]);
                   }}
                 />
               </FormControl>
@@ -116,7 +117,7 @@ const PropertiesComponent = ({
   );
 };
 
-export const ParagraphFieldFormElement: FormElement = {
+export const SpacerFieldFormElement: FormElement = {
   type,
   construct: (id: string) => ({
     id,
@@ -124,8 +125,8 @@ export const ParagraphFieldFormElement: FormElement = {
     extraAttributes,
   }),
   designerBtnElement: {
-    icon: BsTextParagraph,
-    label: 'Paragraph Field',
+    icon: LuSeparatorHorizontal,
+    label: 'Spacer Field',
   },
   designerComponent: DesignerComponent,
   formComponent: FormComponent,

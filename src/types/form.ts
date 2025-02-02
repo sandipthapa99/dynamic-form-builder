@@ -51,4 +51,6 @@ export type ElementsType =
   | 'TextField'
   | 'TitleField'
   | 'SubTitleField'
-  | 'ParagraphField';
+  | 'ParagraphField'
+  | 'SeparatorField'
+  | 'SpacerField';

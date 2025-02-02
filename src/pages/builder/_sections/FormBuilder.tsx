@@ -52,7 +52,7 @@ const FormBuilder = ({ form }: { form: FormResponseType | undefined }) => {
           <div className='blur-[150px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700'></div>
           <div className='blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600'></div>
         </div>
-        <div className=''>
+        <div className='z-10'>
           <div className='flex flex-col items-center text-center'>
             <h1 className='text-center text-3xl md:text-5xl font-semibold pb-2 mb-10 bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent'>
               Form Published Sucessfully!

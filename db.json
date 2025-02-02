@@ -1,4 +1,71 @@
 {
-  "forms": [],
-  "formSubmissions": []
+  "forms": [
+    {
+      "id": "0b3c",
+      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
+      "createdAt": "2025-02-02T14:36:26.518Z",
+      "published": true,
+      "name": "Sample Form",
+      "description": "This is just a sample form",
+      "content": [
+        {
+          "id": "6979",
+          "type": "TitleField",
+          "extraAttributes": {
+            "title": "Title field"
+          }
+        },
+        {
+          "id": "4610",
+          "type": "SubTitleField",
+          "extraAttributes": {
+            "title": "Sub title field"
+          }
+        },
+        {
+          "id": "856",
+          "type": "ParagraphField",
+          "extraAttributes": {
+            "text": "Text here"
+          }
+        }
+      ],
+      "visits": 3,
+      "submissions": 1
+    },
+    {
+      "id": "1e4e",
+      "userId": "user_2sHl4inbvf7Joc3yWHPncJse0kA",
+      "createdAt": "2025-02-02T14:38:51.172Z",
+      "published": false,
+      "name": "Draft Form",
+      "description": "This is a draft form",
+      "content": [
+        {
+          "id": "594",
+          "type": "TitleField",
+          "extraAttributes": {
+            "title": "Title field"
+          }
+        },
+        {
+          "id": "1106",
+          "type": "SubTitleField",
+          "extraAttributes": {
+            "title": "Sub title field"
+          }
+        }
+      ],
+      "visits": 0,
+      "submissions": 0
+    }
+  ],
+  "formSubmissions": [
+    {
+      "id": "1738507085488",
+      "createdAt": "2025-02-02T14:38:05.488Z",
+      "formId": "0b3c",
+      "content": "{}"
+    }
+  ]
 }

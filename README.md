@@ -1,50 +1,119 @@
-# React + TypeScript + Vite
+# Dynamic Form Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based dynamic form builder powered by Vite, ShadCN, Tailwind CSS, and Clerk authentication. The app also includes a mock backend using JSON Server for local data persistence.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Fast Development** with Vite
+- **Beautiful UI Components** using ShadCN and Radix UI
+- **Styled with Tailwind CSS**
+- **Authentication** via Clerk
+- **Form Handling** using `react-hook-form` and Zod validation
+- **Mock API** with JSON Server for local development
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### 1️⃣ Clone the Repository
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+git clone https://github.com/sandipthapa99/dynamic-form-builder.git
+cd dynamic-form-builder
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2️⃣ Install Dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+npm install
 ```
+
+### 3️⃣ Start JSON Server
+
+```sh
+npx json-server --watch db.json --port 3000
+```
+
+Your mock API will be available at:
+
+```
+http://localhost:3000
+```
+
+---
+
+### 4️⃣ Add essential credentials
+
+Create a copy of .env.example as .env and add the required credentials.
+
+## 🏃 Running the Project
+
+### Start Development Server
+
+```sh
+npm run dev
+```
+
+This will start the Vite development server. By default, it runs at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 📂 Project Structure
+
+```
+dynamic-form-builder/
+│── public/             # Static assets
+│── src/                # Application source code
+│   ├── components/     # UI Components
+│   ├── actions/        # Functions for form actions
+│   ├── context/        # Cotext provider to store design elemets in form
+│   ├── fields/         # Form fields and elements
+│   ├── pages/          # App pages
+│   ├── hooks/          # Custom hooks
+│   ├── layout/         # Layout wrapper for pages
+│   ├── lib/            # Utility functions
+│   ├── routes/         # Application routes
+│   ├── types/          # Types and interfaces
+│   ├── main.tsx        # Application entry point
+│   ├── App.tsx         # Main application component
+│── postcss.config.mjs   # PostCSS configuration
+│── tailwind.config.mjs  # Tailwind CSS configuration
+│── tsconfig.json       # TypeScript configuration
+│── vite.config.ts      # Vite configuration
+│── db.json             # Mock database for JSON Server
+│── package.json        # Project dependencies
+│── README.md           # Project documentation
+```
+
+---
+
+## 🏗 Building for Production
+
+```sh
+npm run build
+```
+
+This will generate the production build inside the `dist/` folder.
+
+---
+
+## 🔥 Preview Production Build
+
+```sh
+npm run preview
+```
+
+---
+
+## 🛠 Technologies Used
+
+- **Frontend**: React, Vite, ShadCN, Tailwind CSS
+- **State Management**: React Hooks, React Context
+- **Forms & Validation**: react-hook-form, Zod
+- **Authentication**: Clerk
+- **Icons**: Lucide React
+- **Mock API**: JSON Server

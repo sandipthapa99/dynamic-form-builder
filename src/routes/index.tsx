@@ -2,8 +2,12 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import AdminLayout from '@/layout/AdminLayout';
 import Landingpage from '@/pages/landing.page';
-import SignInPage from '@/pages/Signin.page';
+import SignInPage from '@/pages/signin.page';
 import PublicRoute from './PublicRoute';
+import Homepage from '@/pages/homepage';
+import Builder from '@/pages/builder';
+import FormDetailPage from '@/pages/forms';
+import SubmitPage from '@/pages/submit';
 
 interface AppRoute {
   path: string;
@@ -19,22 +23,31 @@ const routes: AppRoute[] = [
   { path: '/', element: <PublicRoute element={<Landingpage />} /> },
   { path: '/sign-in', element: <PublicRoute element={<SignInPage />} /> },
   {
+    path: 'submit/:id',
+    element: <PublicRoute element={<SubmitPage />} />,
+  },
+
+  {
     path: '/dashboard',
     element: <PrivateRoute element={<AdminLayout />} />,
 
     children: [
       {
         path: '',
-        element: <p>Home</p>,
+        element: <Homepage />,
       },
-      { path: 'builder', element: <p>Builder</p> },
-      // {
-      //   path: 'builder/:id',
-      //   element: <Builder />,
-      // },
+      { path: 'builder', element: <Builder /> },
+      {
+        path: 'builder/:id',
+        element: <Builder />,
+      },
       {
         path: 'forms/:id',
-        element: <p>FOrms page</p>,
+        element: <FormDetailPage />,
+      },
+      {
+        path: 'forms/:id',
+        element: <p>Forms page</p>,
       },
     ],
   },

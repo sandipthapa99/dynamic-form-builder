@@ -5,7 +5,7 @@ const SignInPage = () => {
   return (
     <>
       <Header />
-      <section className='relative flex flex-col items-center justify-center h-[calc(100vh-60px)] gap-5'>
+      <section className='relative flex flex-col items-center justify-center h-[calc(100vh-90px)] gap-5'>
         <div
           aria-hidden='true'
           className='absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20'

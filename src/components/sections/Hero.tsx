@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className='relative px-common'>
+    <section className='relative px-common container'>
       <div
         aria-hidden='true'
         className='absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20'
@@ -12,9 +12,9 @@ const Hero = () => {
       </div>
       <div className='relative pt-36 mx-auto container'>
         <div className=' text-center mx-auto'>
-          <h1 className='text-gray-900 dark:text-white font-bold text-5xl md:text-6xl xl:text-7xl'>
-            Build Forms—Fast & Flexible <br />
-            <p className='text-primary dark:text-white mt-4'>
+          <h1 className='text-gray-900 dark:text-white font-bold text-4xl md:text-6xl xl:text-7xl'>
+            Build Forms—Fast & Flexible
+            <p className=' mt-4 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent'>
               No Code Required
             </p>
           </h1>
